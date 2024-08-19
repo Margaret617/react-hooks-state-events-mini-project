@@ -2,17 +2,17 @@ import React, { useState } from "react";
 
 function NewTaskForm({ onTaskFormSubmit, categories }) {
   const [text, setText] = useState("");
-  const [category, setCategory] = useState("Code");
+  const [category, setCategory] = useState("New");
 
-  function handleSubmit(e) {
+  function handleFormSubmit(e) {
     e.preventDefault();
     onTaskFormSubmit({ text, category });
     setText("");
-    setCategory("Code");
+    setCategory("New");
   }
 
   return (
-    <form className="new-task-form" onSubmit={handleSubmit}>
+    <form className="new-task-form" onSubmit={handleFormSubmit}>
       <label>
         Details
         <input
@@ -21,17 +21,16 @@ function NewTaskForm({ onTaskFormSubmit, categories }) {
           onChange={(e) => setText(e.target.value)}
         />
       </label>
-
       <label>
         Category
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          
-          
           {categories.map((cat) => (
-            <option key={cat}>{cat}</option>
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
           ))}
         </select>
       </label>
